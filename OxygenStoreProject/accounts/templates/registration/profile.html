@@ -1,0 +1,35 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <a href="{% url 'core:main-page' %}" class="btn btn-secondary my-2" style="background-color: #e22b2c; border: none;"><-Вернуться в магазин</a>
+        <h2 class="text-center" style="color: #e42b2b;">Ваш Профиль</h2>
+        <div class="d-flex justify-content-center">
+            <div class="profile-form-container p-4" style="border-radius: 15px; box-shadow: 0px 0px 15px rgba(0,0,0,0.2); width: 50%;">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username">Имя пользователя:</label>
+                        <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" readonly>
+                    </div>
+                    <a href="{% url 'accounts:edit-username' %}" class="btn btn-secondary my-2" style="background-color: #17a2b8; border: none;">Изменить имя пользователя</a>
+                    <a href="{% url 'accounts:edit-email' %}" class="btn btn-secondary my-2" style="background-color: #17a2b8; border: none;">Изменить Email</a>
+                    <a href="{% url 'accounts:edit-password' %}" class="btn btn-secondary my-2" style="background-color: #17a2b8; border: none;">Изменить Пароль</a>
+                    <a href="{% url 'orders:my-orders' %}" class="btn btn-info my-2">Посмотреть мои заказы</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

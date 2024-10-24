@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои заказы</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+    <a href="{% url 'core:main-page' %}" class="btn btn-secondary my-2" style="background-color: #e22b2c; border: none;"><-Вернуться в магазин</a>
+        <h2 class="text-center" style="color: #333;">Мои заказы</h2>
+        {% for order in orders %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Заказ №{{ order.id }}</h4>
+                <p>Дата: {{ order.created_at|date:"d.m.Y H:i" }}</p>
+                <p>Адрес: {{ order.address }}</p>
+            </div>
+            <div class="card-body">
+                <ul class="list-group mb-3">
+                    {% for item in order.items.all %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div>{{ item.product.name }} ({{ item.quantity }} шт.)</div>
+                        <div>{{ item.price|floatformat:2 }} ₽</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <h5 class="text-right">Итого: {{ order.total_price|floatformat:2 }} ₽</h5>
+                <form method="post" action="{% url 'orders:cancel-order' order.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Отказаться от заказа</button>
+                </form>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">У вас нет заказов.</p>
+        {% endfor %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

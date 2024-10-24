@@ -1,0 +1,10 @@
+{
+    "NAME": "OxygenStore",
+    "USER": "postgres",
+    "PASSWORD": "12345asd",
+    "HOST": "localhost",
+    "PORT": "5432",
+    "EMAIL_HOST_USER": "yashma.cats@yandex.ru",
+    "EMAIL_HOST_PASSWORD": "oyzmoujykdqmmzsq",
+    "DEFAULT_FROM_EMAIL": "yashma.cats@yandex.ru"
+}

@@ -1,0 +1,13 @@
+{
+    "NAME": "OxygenStore",
+    "USER": "your_db_user",
+    "PASSWORD": "your_db_password",
+    "HOST": "localhost",
+    "PORT": "5432",
+    "EMAIL_HOST_USER": "your_email",
+    "EMAIL_HOST_PASSWORD": "your_email_password",
+    "DEFAULT_FROM_EMAIL": "your_email"
+}
+
+#  ab@ab.ab
+#  123qweASD!!!

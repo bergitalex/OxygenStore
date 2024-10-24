@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Оформление заказа</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <a href="{% url 'cart:cart_detail' %}" class="btn btn-secondary mb-3"><- Вернуться в корзину</a>
+        <h2 class="text-center">Оформление заказа</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="user_name">Имя:</label>
+                <input type="text" class="form-control" id="user_name" value="{{ user_name }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="user_email">Email:</label>
+                <input type="email" class="form-control" id="user_email" value="{{ user_email }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="address">Адрес:</label>
+                {{ form.address }}
+                <small class="form-text text-muted">Пример: ул. Пушкина, д. 15, кв. 25</small>
+            </div>
+            <h4>Ваши товары:</h4>
+            <ul class="list-group mb-3">
+                {% for item in cart_items %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ item.product.name }} ({{ item.quantity }} шт.) - {{ item.total_price }} ₽
+                </li>
+                {% endfor %}
+            </ul>
+            <p><strong>Общая сумма: </strong>{{ total_price }} ₽</p>
+            <p class="text-muted">Оплата при получении</p>
+            <button type="submit" class="btn btn-primary btn-block">Оформить заказ</button>
+        </form>
+    </div>
+</body>
+</html>
